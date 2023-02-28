@@ -102,7 +102,7 @@
     <div id='map'></div>
     <div id="nav" class="mapboxgl-ctrl-bottom-right"></div>
     <div id="onsite-description" class="mapboxgl-ctrl mapboxgl-ctrl-group">
-        <p>This is a web map consisted of 4 map tiles
+        <p>Global Gig Economy Index Map (Made by Yuying Xie)
         </p>
       </div>
       
@@ -128,39 +128,39 @@
 
         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
 
-            map.addSource('Tile one', {
+            map.addSource('Basemap', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/Tile one new/{z}/{x}/{y}.png'
+                    'assets/Basemap/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 208,
+                'tileSize': 200,
                 'attribution': 'Map tiles designed by Yuying Xie</a>'
             });
 
-            map.addSource('Tile two', {
+            map.addSource('World Gig Economy Index', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/Tile two/{z}/{x}/{y}.png'
+                    'assets/World Gig Economy Index/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 208,
+                'tileSize': 200,
                 'attribution': 'Map tiles designed by Yuying Xie'
             });
 
-            map.addSource('Tile three', {
+            map.addSource('Index on Basemap', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/Tile three/{z}/{x}/{y}.png'
+                    'assets/Index on Basemap/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 208,
+                'tileSize': 200,
                 'attribution': 'Map tiles designed by Yuying Xie'
             });
 
-            map.addSource('Tile four', {
+            map.addSource('American Federation of State, County and Municipal Employees Theme', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/Tile four/{z}/{x}/{y}.png'
+                    'assets/American Federation of State, County and Municipal Employees Theme/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 208,
+                'tileSize': 200,
                 'attribution': 'Map tiles designed by Yuying Xie'
             });
 
