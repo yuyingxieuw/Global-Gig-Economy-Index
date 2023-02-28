@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Seattle Web Map</title>
+    <title>World Gig Economy Index Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
@@ -102,9 +102,7 @@
     <div id='map'></div>
     <div id="nav" class="mapboxgl-ctrl-bottom-right"></div>
     <div id="onsite-description" class="mapboxgl-ctrl mapboxgl-ctrl-group">
-        <p>This is a web map consisted of 4 map tiles (Base map, hospital locations, hospital location on the base map, and LGBTQ themed map)
-            This maps allows the users to toggle each opiton of map title they desire and zoom in and zoom out control, as well
-            as the scale bar. Also the attribution attributed by the beloved Haochen Miao
+        <p>This is a web map consisted of 4 map tiles
         </p>
       </div>
       
@@ -114,8 +112,8 @@
         let map = new mapboxgl.Map({
             container: 'map', // container ID
             style: 'mapbox://styles/mapbox/dark-v10',
-            zoom: 12, // starting zoom
-            center: [-122.2559435, 47.6002614] // starting center
+            zoom: 1.8, // starting zoom
+            center: [38.9637, 50.2433] // starting center
         });
 
         let scale = new mapboxgl.ScaleControl({
@@ -130,76 +128,76 @@
 
         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
 
-            map.addSource('BaseMap-tiles', {
+            map.addSource('Tile one', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/BaseMap/{z}/{x}/{y}.png'
+                    'assets/Tile one/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 256,
-                'attribution': 'Map tiles designed by Haochen Miao</a>'
+                'tileSize': 208,
+                'attribution': 'Map tiles designed by Yuying Xie</a>'
             });
 
-            map.addSource('hospital-tiles', {
+            map.addSource('Tile two', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/Second-tile/{z}/{x}/{y}.png'
+                    'assets/Tile two/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 256,
-                'attribution': 'Map tiles designed by Haochen Miao'
+                'tileSize': 208,
+                'attribution': 'Map tiles designed by Yuying Xie'
             });
 
-            map.addSource('hospital_on_base_map-tiles', {
+            map.addSource('Tile three', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/Third-tile/{z}/{x}/{y}.png'
+                    'assets/Tile three/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 256,
-                'attribution': 'Map tiles designed by Haochen Miao'
+                'tileSize': 208,
+                'attribution': 'Map tiles designed by Yuying Xie'
             });
 
-            map.addSource('pride-tiles', {
+            map.addSource('Tile four', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/fourth-tile/{z}/{x}/{y}.png'
+                    'assets/Tile four/{z}/{x}/{y}.png'
                 ],
-                'tileSize': 256,
-                'attribution': 'Map tiles designed by Haochen Miao'
+                'tileSize': 208,
+                'attribution': 'Map tiles designed by Yuying Xie'
             });
 
             map.addLayer({
-                'id': 'Base Map',
+                'id': 'Tile one',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'BaseMap-tiles'
+                'source': 'Tile one'
             });
 
             map.addLayer({
-                'id': 'Hospitals',
+                'id': 'Tile two',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'hospital-tiles'
+                'source': 'Tile two'
             });
 
             map.addLayer({
-                'id': 'Hospitals on gold map',
+                'id': 'Tile three',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'hospital_on_base_map-tiles'
+                'source': 'Tile three'
             });
 
             map.addLayer({
-                'id': 'LGBTQ Pride',
+                'id': 'Tile four',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'pride-tiles'
+                'source': 'Tile four'
             });
 
         });
@@ -208,12 +206,12 @@
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('Base Map') || !map.getLayer('Hospitals') || !map.getLayer('Hospitals on gold map') || !map.getLayer('LGBTQ Pride')) {
+            if (!map.getLayer('Tile one') || !map.getLayer('Tile two') || !map.getLayer('Tile three') || !map.getLayer('Tile four')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['Base Map', 'Hospitals', 'Hospitals on gold map', 'LGBTQ Pride'];
+            const toggleableLayerIds = ['Tile one', 'Tile two', 'Tile three', 'Tile four'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
