@@ -102,7 +102,7 @@
     <div id='map'></div>
     <div id="nav" class="mapboxgl-ctrl-bottom-right"></div>
     <div id="onsite-description" class="mapboxgl-ctrl mapboxgl-ctrl-group">
-        <p>Global Gig Economy Index Map (Made by Yuying Xie)
+        <p>Regional Gig Economy Index Map (Made by Yuying Xie)
         </p>
       </div>
       
@@ -112,8 +112,8 @@
         let map = new mapboxgl.Map({
             container: 'map', // container ID
             style: 'mapbox://styles/mapbox/dark-v10',
-            zoom: 1.8, // starting zoom
-            center: [38.9637, 50.2433] // starting center
+            zoom: 2.5, // starting zoom
+            center: [55.960147, 40.136357] // starting center
         });
 
         let scale = new mapboxgl.ScaleControl({
@@ -137,10 +137,10 @@
                 'attribution': 'Map tiles designed by Yuying Xie</a>'
             });
 
-            map.addSource('World Gig Economy Index', {
+            map.addSource('Regional Gig Economy Index', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/World Gig Economy Index/{z}/{x}/{y}.png'
+                    'assets/Regional Gig Economy Index/{z}/{x}/{y}.png'
                 ],
                 'tileSize': 200,
                 'attribution': 'Map tiles designed by Yuying Xie'
@@ -165,39 +165,39 @@
             });
 
             map.addLayer({
-                'id': 'Tile one',
+                'id': 'Basemap',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'Tile one'
+                'source': 'Basemap'
             });
 
             map.addLayer({
-                'id': 'Tile two',
+                'id': 'Regional Gig Economy Index',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'Tile two'
+                'source': 'Regional Gig Economy Index'
             });
 
             map.addLayer({
-                'id': 'Tile three',
+                'id': 'Index on Basemap',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'Tile three'
+                'source': 'Index on Basemap'
             });
 
             map.addLayer({
-                'id': 'Tile four',
+                'id': 'American Federation of State, County and Municipal Employees Theme',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'Tile four'
+                'source': 'American Federation of State, County and Municipal Employees Theme'
             });
 
         });
@@ -206,12 +206,12 @@
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('Tile one') || !map.getLayer('Tile two') || !map.getLayer('Tile three') || !map.getLayer('Tile four')) {
+            if (!map.getLayer('Basemap') || !map.getLayer('Regional Gig Economy Index') || !map.getLayer('Index on Basemap') || !map.getLayer('American Federation of State, County and Municipal Employees Theme')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['Tile one', 'Tile two', 'Tile three', 'Tile four'];
+            const toggleableLayerIds = ['Basemap', 'Regional Gig Economy Index', 'Index on Basemap', 'American Federation of State, County and Municipal Employees Theme'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
